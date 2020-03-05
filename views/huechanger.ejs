@@ -1,0 +1,26 @@
+<link href="./stylesheets/style.css" rel="stylesheet" type="text/css">
+<form>
+    <div>
+        <span>
+            Day mode (normal)
+        </span>
+        <span>
+            <label class="switch">
+                <input type="checkbox" id="HueChanger" onchange="toggleHueChanger()">
+                <span class="slider round"></span>
+            </label>
+        </span>
+        <span>
+            Night mode (reduce blue light)
+        </span>
+    </div>    
+</form>
+<script type="text/javascript">function toggleHueChanger() {
+    if(document.getElementById("HueChanger").checked === true){
+        document.getElementById("bodyfont").style.backgroundColor =  "LemonChiffon";
+        console.log("HUE CHECKED");
+    } else {
+        document.getElementById("bodyfont").style.backgroundColor = "white";
+        console.log("HUE UNCHECKED");
+    }
+  }</script>
