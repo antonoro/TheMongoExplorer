@@ -21,10 +21,10 @@ function MongoUtils(){
             .db()
             .admin()
             .listDatabases({nameonly:true})
-        ).finally(dbases => {
-            console.log("Databases", dbases);
+        ).then(dbases => {
+            console.log("Databases in MongoDB", dbases.databases[0]);
             client.close();
-            return dbases;
+            return dbases.name;
         });
 
 
