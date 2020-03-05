@@ -16,33 +16,34 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body id="bodyfont">
-    
-    <p>Welcome to our website</p>
-    <p>Please authenticate yourself</p>
+    <div>
+      <p>Welcome to the Mongo Explorer</p>
+      <p>Please browse our databases</p>
+  </div>
+    <div class="input-group">
+      <form id="SelectFormDB" action="/selectDB">
+        <span>Databases: </span>
+        <select name="selectorDB" id="selectoridDB" onchange="this.form.submit()">
+            <option value="Num0">Select...</option>
+          <% DBs.forEach( (data) => { %>
+            <option value=""><%= data.name %></option>
+          <% }) %>
+        </select>
+      </form>
+    </div>
 
     <div class="input-group">
-      <form id="SelectForm" action="/selectSS">
-        <select name="selector" id="selectorid" onchange="this.form.submit()">
+      <form id="SelectFormCOLL" action="/selectColl">
+        
+        <span>Collections: </span>
+        <select name="selectorCOLL" id="selectoridCOLL" onchange="this.form.submit()">
           <option value="">Select...</option>
-          <option value="Num1">Choix1</option>
+          <option value="Num1" %></option>>Choix1</option>
           <option value="Num2">Choix2</option>
           <option value="Num3">Choix3</option>
           <option value="Num4">Choix4</option>
         </select>
-    
-        <!-- peut etre pas utile-->
-        <!-- <button class="btn btn-secondary" type="submit">Select</button> -->
       </form>
-    </div>
-
-    <ul id="datalisting">
-      <% datalisting.forEach( (data) => { %>
-      <li><%= data.CHANGE %> : <%= data.CHANGE %> <a class="btn btn-info" href=<%- "/datalist/" + data._id %>> Details </a></li>
-      <% }) %>
-    </ul>
-
-    <div>
-      <%- include("./auth.ejs") %>
     </div>
 
     <div>

@@ -13,51 +13,18 @@ router.get("/selectSS", (req, res) => {
 
   console.log(req.query);
 
-  mu.find(query).then(datalisting => res.render("index", {datalisting}));
+  mu.findDep(query).then(datalisting => res.render("index", {datalistings: datalisting}));
 
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Welcome' });
+
+  mu.getDatabases()
+    .then(databaselisting =>
+      res.render('index', { title: 'The Mongo Explorer', DBs: databaselisting})
+      )
 });
 
-/*Authenticate */
-router.get('/login', (req, res) =>{
-  res.render('index', { title: 'Authentication: Pending' })
-}
-);
-
-router.post('/login', 
-passport.authenticate('local', 
-{
-  failureRedirect: '/login',
-  successRedirect: '/home/?valid=true&status=passed'
-})
-);
-
-
-
-
-/*Home Logged in*/
-router.get('/home', (req, res) =>{
-  var passedVar = req.query;
-  console.log(passedVar);
-  if(passedVar.valid === 'true')
-  {
-    res.render('home',{ title: 'Authentication: Success' })
-  }
-  else{
-    console.log('fail');
-    res.redirect('/login');
-  }
-}
-);
-
-router.get('/logout',
-  function(req, res){
-    req.logout();
-    res.redirect('/');
-  });
 
 module.exports = router;
