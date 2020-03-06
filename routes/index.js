@@ -34,7 +34,7 @@ router.get("/collections/:query", (req, res) => {
 });
 
 
-router.post("/document/:query", (req, res) => {
+router.get("/document/add/:query", (req, res) => {
   console.log("add params", req.params.query);
 
   splittedQuery = req.params.query.split("+");
@@ -42,12 +42,14 @@ router.post("/document/:query", (req, res) => {
   console.log("Collection", splittedQuery[1]);
   console.log("documentAddedName", splittedQuery[2]);
   console.log("documentAddedCountry", splittedQuery[3]);
-  const DocumentAdded = {
-    DocumentCountry: req.body.splittedQuery[3],
-    DocumentName: req.body.splittedQuery[2]
+  const DocumenttoAdd = {
+    country: splittedQuery[3],
+    name: splittedQuery[2],
+    timestamp: new Date()
   };
-  mu.insert(DocumentAdded, splittedQuery[0], splittedQuery[1])
-    .then(res.redirect("/"));
+  console.log("The document", DocumenttoAdd);
+  mu.insert(DocumenttoAdd, splittedQuery[0], splittedQuery[1])
+    .then(collectionDataListings => res.json(collectionDataListings));
 });
 
 /* GET home page. */

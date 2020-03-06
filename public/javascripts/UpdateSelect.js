@@ -30,9 +30,9 @@ const populateCollections = datalist => {
     datalistUl.innerHTML = "";
   
     datalist.forEach(d => {
-      const dataLi = document.createElement("tr");
-  
-      dataLi.textContent = `${d.name}`;
+      const dataLi = document.createElement("li");
+      
+      dataLi.textContent = `${d.name} (${d.country})`;
   
       datalistUl.appendChild(dataLi);
     });
@@ -81,10 +81,11 @@ const onSelectAddDoc = evento => {
   console.log("La query", query);
   console.log("Document added is:", documentAdded);
   console.log("ON SELECTTT DOC");
-  console.log(`/documents/add/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`);
-  fetch(`/collections/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`)
+  console.log("THIS IS THE PATH",`/documents/add/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`);
+  fetch(`/document/add/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`)
       .then(res =>{
         console.log("Status of fetch", res.status);
+        res.json().then(populateDataCollections);
       })
 
   evento.preventDefault();
