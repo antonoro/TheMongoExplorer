@@ -16,37 +16,38 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body id="bodyfont">
-    <div>
-      <p>Welcome to the Mongo Explorer</p>
-      <p>Please browse our databases</p>
-  </div>
-    <div class="input-group">
-      <form id="SelectFormDB" action="/selectDB">
-        <span>Databases: </span>
-        <select name="selectorDB" id="selectoridDB" onchange="this.form.submit()">
-            <option value="Num0">Select...</option>
-          <% DBs.forEach( (data) => { %>
-            <option value=""><%= data.name %></option>
-          <% }) %>
-        </select>
-      </form>
+    <div class="row">
+      <p>Welcome to the Mongo Explorer, please browse our databases</p>
+      
     </div>
+    <div class="row">
+      <div class="input-group">
+        <form id="SelectFormDB" action="/selectDB">
+          <span>Databases: </span>
+          <select name="selectorDB" id="selectoridDB">
+              <option value="NoSelect"><%= DBSelected %></option>
+            <% DBs.forEach( (data) => { %>
+              <option value=<%= data.name %>><%= data.name %></option>
+            <% }) %>
+          </select>
+          <button class="btn btn-secondary" type="submit">Select DB</button>
+        </form>
+      </div>
 
-    <div class="input-group">
-      <form id="SelectFormCOLL" action="/selectColl">
-        
-        <span>Collections: </span>
-        <select name="selectorCOLL" id="selectoridCOLL" onchange="this.form.submit()">
-          <option value="">Select...</option>
-          <option value="Num1" %></option>>Choix1</option>
-          <option value="Num2">Choix2</option>
-          <option value="Num3">Choix3</option>
-          <option value="Num4">Choix4</option>
-        </select>
-      </form>
+      <div class="input-group">
+        <form id="SelectFormCOLL" action="/selectColl">
+          <span>Collections: </span>
+          <select name="selectorCOLL" id="selectoridCOLL" onchange="this.form.submit()">
+            <option value="">Select...</option>
+            <option value="Num1">Choix1</option>
+            <option value="Num2">Choix2</option>
+            <option value="Num3">Choix3</option>
+            <option value="Num4">Choix4</option>
+          </select>
+        </form>
+      </div>
     </div>
-
-    <div>
+    <div class="row">
       <%- include("./huechanger.ejs") %>
     </div>
 

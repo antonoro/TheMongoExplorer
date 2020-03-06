@@ -20,20 +20,34 @@ function MongoUtils(){
             client
             .db()
             .admin()
-            .listDatabases({nameonly:true})
+            .listDatabases()
         ).then(dbases => {
-            console.log("Databases in MongoDB", dbases.databases[0]);
+            const DBs = dbases.databases;
+            console.log("Databases in MongoDB", DBs);
+            console.log("Number of db", DBs.length);
             client.close();
-            return dbases.name;
+            return DBs;
         });
 
+    mu.getCollections = (dbName) => mu.connect().then(client => (
+
+        client.db(dbName)
+            .listCollections()
+            .toArray()
+    ).then(collectionsDB => {
+        const Colls = collectionsDB.collections;
+        console.log("Collections given", collectionsDB);
+        console.log("Number of Collections", Colls.length);
+        client.close();
+        return Colls;
+    }));
 
     mu.findDep = query => mu.connect().then(client => 
         {
             const departamentosCol = client.db(dbName).collection(colNameDepartamentos);
             return departamentosCol
                 .find(query)
-                .sort({name: +1})
+                .sort({_id: -1})
                 .toArray()
                 .finally(() => client.close());
         });
@@ -43,7 +57,7 @@ function MongoUtils(){
             const ciudadesCol = client.db(dbName).collection(colNameCiudades);
             return ciudadesCol
                 .find(query)
-                .sort({name: +1})
+                .sort({_id: -1})
                 .toArray()
                 .finally(() => client.close());
         });

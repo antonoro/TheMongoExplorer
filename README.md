@@ -1,5 +1,9 @@
-# NAME OF PROJECT
-Midterm exam of Web Development class ISIS3710 at Universidad de los Andes - PROJECT DESCRIPTION
+# The Mongo Explorer
+
+Midterm exam of Web Development class ISIS3710 at Universidad de los Andes.
+
+OPTION 1: Application that lists all databases in a Mongo server, and allows to browse their collections and contents.
+The app will be deployed on herokuapp.com and will allow add registers to existing collections. Due Saturday March 7th 2020, 8AM.
 
 ## 1: Objectives and technologies used
 
@@ -52,4 +56,4 @@ Antoine Noreau // https://github.com/antonoro
 
 ## 5: Licence
 
-This project is licensed under the terms of the MIT <a href="FIX PATHHHHHH/LICENSE">License</a>.
+This project is licensed under the terms of the MIT <a href="./LICENSE.md">License</a>.

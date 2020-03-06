@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+const express = require('express');
+const router = express.Router();
+
 
 const mu = require("../db/MongoUtils.js");
 
@@ -8,12 +8,15 @@ const buildQuery = query => ({
   name: new RegExp(`.*${query}.*`, "i")
 });
 
-router.get("/selectSS", (req, res) => {
+router.get("/selectDB", (req, res) => {
   const query = buildQuery(req.query.selector);
 
   console.log(req.query);
-
-  mu.findDep(query).then(datalisting => res.render("index", {datalistings: datalisting}));
+  mu.getDatabases()
+    .then(databaselisting =>
+      res.render('index', { title: 'The Mongo Explorer', DBs: databaselisting, DBSelected: req.query.selectorDB})
+      )
+  
 
 });
 
@@ -22,7 +25,7 @@ router.get('/', function(req, res, next) {
 
   mu.getDatabases()
     .then(databaselisting =>
-      res.render('index', { title: 'The Mongo Explorer', DBs: databaselisting})
+      res.render('index', { title: 'The Mongo Explorer', DBs: databaselisting, DBSelected: "Select..."})
       )
 });
 

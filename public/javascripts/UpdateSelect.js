@@ -1,6 +1,6 @@
-const selectForm  =document.querySelector('#SelectForm');
+const selectForm = document.querySelector("#SelectFormDB");
 
-const populateData = datalist => {
+const populateDataCollections = datalist => {
     const datalistUl = document.querySelector("#datalist");
   
     datalistUl.innerHTML = "";
@@ -15,16 +15,15 @@ const populateData = datalist => {
     });
   };
 
-const onSelect = evento => {
-    const query = document.querySelector("#selectorid option:checked").value;
-
-    //Maybe change handle url
-    fetch(`/datalist/${query}`)
+const onSelectDB = evento => {
+    const query = document.querySelector("#selectoridDB option:checked").value;
+    console.log("DB SELECTEDDDD");
+    fetch(`/selectDB/${query}`)
         .then(res => res.json())
-        .then(populateData);
+        .then(populateDataCollections);
 
-    evento.prventDefault();
+    evento.preventDefault();
 
 };
 
-selectForm.addEventListener("submit", onSelect)
+selectForm.addEventListener("submit", onSelectDB);
