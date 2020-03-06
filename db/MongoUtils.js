@@ -51,6 +51,14 @@ function MongoUtils(){
             })
         );
     
+    mu.insert = (document, dbName, collName) => mu.connect().then(client => 
+        {
+            const selectedCol = client.db(dbName).collection(collName);
+            return selectedCol
+                .insertOne(document)
+                .finally(() => client.close());
+        });
+
     return mu;
 
 }

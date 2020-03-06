@@ -18,7 +18,7 @@
   <body id="bodyfont">
     <div class="container">
       <div class="row">  
-        <div class="col-lg-8">  
+        <div class="col-sm-5">  
           <div class="row">
             <p>Welcome to the Mongo Explorer, please browse our databases</p>
             
@@ -52,11 +52,49 @@
             <%- include("./huechanger.ejs") %>
           </div>
         </div>  
-        <div class="col-lg-4">
-          <h2>Collection contents</h2>
+        <div class="col">
+          <h3>Collection contents</h3>
           <table id="collectioncontent">
             
           </table>
+        </div>
+        <div class="col">
+          <form id="DocumentAdd">
+            <div>
+              <div class="form-group">
+                  <label class="row">
+                      <h3>Add document to collection</h3>
+                  </label>
+              </div>
+              <div class="form-group">
+                  <label class="row">
+                      <div class="col-sm-2">
+                          <span>Name:</span>
+                      </div>
+                      <div class="col-sm-3">
+                          <input class="form_control input-sm" type="text" name="DocumentName" required>
+                      </div>
+                  </label>
+              </div>
+      
+              <div class="form-group">
+                  <label class="row">
+                      <div class="col-sm-3">
+                          <span>Country:</span>
+                      </div>
+                      <div class="col-sm-6">
+                          <input class="form_control" type="text" name="DocumentCountry" required>
+                      </div>
+                  </label>
+              </div>
+      
+              <div class="form-group">
+                  <button class="btn btn-primary" type="submit">Add Document</button>
+              </div>
+
+
+          </form>
+       
         </div>
       </div>    
     </div>  

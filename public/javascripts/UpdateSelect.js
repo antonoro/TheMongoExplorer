@@ -5,6 +5,10 @@ console.log("formSubmit", formSubmit);
 const collformSubmit = document.querySelector("#SelectFormCOLL");
 console.log("collformSubmit", collformSubmit);
 
+const addDocformSubmit = document.querySelector("#DocumentAdd");
+console.log("addDocSubmit", addDocformSubmit);
+
+
 
 const populateCollections = datalist => {
     const datalistUl = document.querySelector("#selectoridCOLL");
@@ -38,7 +42,7 @@ const onSelectDB = evento => {
   
   const query = document.querySelector("#selectoridDB option:checked").value;
   console.log("La query", query);
-  console.log("ON SELECTTT");
+  console.log("ON SELECTTT DB");
   console.log(`/databases/${query}`);
   fetch(`/databases/${query}`)
       .then(res =>{
@@ -56,7 +60,7 @@ const onSelectColl = evento => {
   const query = document.querySelector("#selectoridCOLL option:checked").value;
   console.log("El dbname", dbname);
   console.log("La query", query);
-  console.log("ON SELECTTT");
+  console.log("ON SELECTTT COLL");
   console.log(`/collections/${dbname}+${query}`);
   fetch(`/collections/${dbname}+${query}`)
       .then(res =>{
@@ -68,5 +72,25 @@ const onSelectColl = evento => {
 
 };
 
+const onSelectAddDoc = evento => {
+  
+  const dbname = document.querySelector("#selectoridDB option:checked").value;
+  const query = document.querySelector("#selectoridCOLL option:checked").value;
+  const documentAdded = document.querySelector("#DocumentAdd");
+  console.log("El dbname", dbname);
+  console.log("La query", query);
+  console.log("Document added is:", documentAdded);
+  console.log("ON SELECTTT DOC");
+  console.log(`/documents/add/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`);
+  fetch(`/collections/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`)
+      .then(res =>{
+        console.log("Status of fetch", res.status);
+      })
+
+  evento.preventDefault();
+
+};
+
 formSubmit.addEventListener("submit", onSelectDB);
 collformSubmit.addEventListener("submit", onSelectColl);
+addDocformSubmit.addEventListener("submit", onSelectAddDoc);
