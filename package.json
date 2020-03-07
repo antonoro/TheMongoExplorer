@@ -1,5 +1,5 @@
 {
-  "name": "goodprogress-midterm-isis3710",
+  "name": "themongoexplorer",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,6 @@
     "mongodb": "^3.5.4",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.2",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
     "prettier": "^1.19.1"
   },
   "devDependencies": {
