@@ -85,8 +85,12 @@ const onSelectAddDoc = evento => {
   fetch(`/document/add/${dbname}+${query}+${documentAdded[0].value}+${documentAdded[1].value}`)
       .then(res =>{
         console.log("Status of fetch", res.status);
+        fetch(`/collections/${dbname}+${query}`)
+        .then(res =>{
+        console.log("Status of fetch", res.status);
         res.json().then(populateDataCollections);
-      })
+        });
+      });
 
   evento.preventDefault();
 

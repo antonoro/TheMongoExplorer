@@ -6,7 +6,8 @@ function MongoUtils(){
 
     const mu = {},
         
-    url = "mongodb+srv://antonoro:antoine10@midtermexamdbs-jw8ud.gcp.mongodb.net/test?retryWrites=true&w=majority"; 
+    //rl = "mongodb+srv://antonoro:antoine10@midtermexamdbs-jw8ud.gcp.mongodb.net/test?retryWrites=true&w=majority"; 
+    url = "mongodb://localhost:27017/"; 
 
     mu.connect = () => {
         client = new MongoClient(url, {useUnifiedTopology: true});
@@ -54,14 +55,14 @@ function MongoUtils(){
     mu.insert = (document, dbName, collName) => mu.connect().then(client => 
         {
             const selectedCol = client.db(dbName).collection(collName);
-            selectedCol.insertOne(document).finally(() => 
+            selectedCol.insertOne(document).then(() => 
                 
-                (client.db(dbName).collection(collName).find({}).toArray())   
+                (client.db(dbName).collection(collName).find({}).toArray()   
                 .then(dataCollection => {
                     console.log("Data given", dataCollection);
                     client.close();
                     return dataCollection;
-                }));
+                })));
         }
     );
         
