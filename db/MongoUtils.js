@@ -6,8 +6,8 @@ function MongoUtils(){
 
     const mu = {},
         
-    //rl = "mongodb+srv://antonoro:antoine10@midtermexamdbs-jw8ud.gcp.mongodb.net/test?retryWrites=true&w=majority"; 
-    url = "mongodb://localhost:27017/"; 
+    url = "mongodb+srv://antonoro:antoine10@midtermexamdbs-jw8ud.gcp.mongodb.net/test?retryWrites=true&w=majority"; 
+    //url = "mongodb://localhost:27017/"; 
 
     mu.connect = () => {
         client = new MongoClient(url, {useUnifiedTopology: true});
