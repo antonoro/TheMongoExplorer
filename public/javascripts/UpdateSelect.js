@@ -28,14 +28,22 @@ const populateCollections = datalist => {
     const datalistUl = document.querySelector("#collectioncontent");
   
     datalistUl.innerHTML = "";
-  
-    datalist.forEach(d => {
-      const dataLi = document.createElement("li");
+    i = 0;
+    try{
+      datalist.some(d => {
+        const dataLi = document.createElement("li");
+        
+        dataLi.textContent = `${d.name} (${d.country})`;
+    
+        datalistUl.appendChild(dataLi);
+        i++;
+        if(i > 19) throw BreakException;
+      });
+    }
+    catch(e)
+    {
       
-      dataLi.textContent = `${d.name} (${d.country})`;
-  
-      datalistUl.appendChild(dataLi);
-    });
+    }
   };
 
 const onSelectDB = evento => {

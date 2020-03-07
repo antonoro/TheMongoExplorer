@@ -6,7 +6,7 @@ function MongoUtils(){
 
     const mu = {},
         
-    url = "mongodb+srv://antonoro:antoine10@midtermexamdbs-jw8ud.gcp.mongodb.net/test?retryWrites=true&w=majority"; 
+    url = "mongodb://usertest:usertest@midtermexamdbs-shard-00-00-jw8ud.gcp.mongodb.net:27017,midtermexamdbs-shard-00-01-jw8ud.gcp.mongodb.net:27017,midtermexamdbs-shard-00-02-jw8ud.gcp.mongodb.net:27017/test?ssl=true&replicaSet=MidtermExamDBs-shard-0&authSource=admin&retryWrites=true&w=majority"; 
     //url = "mongodb://localhost:27017/"; 
 
     mu.connect = () => {
@@ -43,6 +43,7 @@ function MongoUtils(){
         client.db(dbName)
             .collection(collName)
             .find({})
+            .sort({timestamp: -1})
             .toArray()
             )   
             .then(dataCollection => {
